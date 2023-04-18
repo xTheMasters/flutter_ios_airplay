@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
-
-import 'package:flutter/services.dart';
 import 'package:flutter_ios_airplay/flutter_ios_airplay.dart';
 
 void main() {
@@ -40,14 +37,14 @@ class _MyAppState extends State<MyApp> {
                   await FlutterIosAirplay.url(
                       url: 'https://themonstersapp.com/americano.mp4');
                 },
-                child: Text('Video'),
+                child: const Text('Video'),
               ),
               ElevatedButton(
                 onPressed: () async {
                   await FlutterIosAirplay.assets(
                       assets: 'assets/americano.mp4');
                 },
-                child: Text('Video'),
+                child: const Text('Video'),
               ),
             ],
           ),

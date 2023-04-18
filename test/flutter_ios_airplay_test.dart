@@ -1,5 +1,4 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_ios_airplay/flutter_ios_airplay.dart';
 import 'package:flutter_ios_airplay/flutter_ios_airplay_platform_interface.dart';
 import 'package:flutter_ios_airplay/flutter_ios_airplay_method_channel.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
