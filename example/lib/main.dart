@@ -23,6 +23,8 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      themeMode: ThemeMode.system,
+      theme: ThemeData(useMaterial3: true),
       home: Scaffold(
         appBar: AppBar(
           title: const Text('Plugin example app'),
@@ -37,14 +39,14 @@ class _MyAppState extends State<MyApp> {
                   await FlutterIosAirplay.url(
                       url: 'https://themonstersapp.com/americano.mp4');
                 },
-                child: const Text('Video'),
+                child: const Text('Video Url'),
               ),
               ElevatedButton(
                 onPressed: () async {
                   await FlutterIosAirplay.assets(
                       assets: 'assets/americano.mp4');
                 },
-                child: const Text('Video'),
+                child: const Text('Video assets'),
               ),
             ],
           ),
