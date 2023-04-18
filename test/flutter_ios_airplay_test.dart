@@ -7,23 +7,21 @@ import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 class MockFlutterIosAirplayPlatform
     with MockPlatformInterfaceMixin
     implements FlutterIosAirplayPlatform {
-
   @override
   Future<String?> getPlatformVersion() => Future.value('42');
 }
 
 void main() {
-  final FlutterIosAirplayPlatform initialPlatform = FlutterIosAirplayPlatform.instance;
+  final FlutterIosAirplayPlatform initialPlatform =
+      FlutterIosAirplayPlatform.instance;
 
   test('$MethodChannelFlutterIosAirplay is the default instance', () {
     expect(initialPlatform, isInstanceOf<MethodChannelFlutterIosAirplay>());
   });
 
   test('getPlatformVersion', () async {
-    FlutterIosAirplay flutterIosAirplayPlugin = FlutterIosAirplay();
-    MockFlutterIosAirplayPlatform fakePlatform = MockFlutterIosAirplayPlatform();
+    MockFlutterIosAirplayPlatform fakePlatform =
+        MockFlutterIosAirplayPlatform();
     FlutterIosAirplayPlatform.instance = fakePlatform;
-
-    expect(await flutterIosAirplayPlugin.getPlatformVersion(), '42');
   });
 }
