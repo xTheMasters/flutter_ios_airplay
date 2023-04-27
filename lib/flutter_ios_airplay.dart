@@ -13,14 +13,4 @@ class FlutterIosAirplay {
 
     await _channel.invokeMethod('playVideoFromUrl', args);
   }
-
-  static Future<void> assets({
-    required String assets,
-  }) async {
-    Map<String, dynamic> args = {
-      'assets': assets,
-    };
-
-    await _channel.invokeMethod('playVideoFromAsset', args);
-  }
 }

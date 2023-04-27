@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_ios_airplay/flutter_ios_airplay.dart';
 
 void main() {
@@ -13,13 +14,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  // Platform messages are asynchronous, so we initialize in an async method.
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -37,16 +31,9 @@ class _MyAppState extends State<MyApp> {
               ElevatedButton(
                 onPressed: () async {
                   await FlutterIosAirplay.url(
-                      url: 'https://themonstersapp.com/americano.mp4');
+                      url: 'https://themonstersapp.com/bunny.mp4');
                 },
                 child: const Text('Video Url'),
-              ),
-              ElevatedButton(
-                onPressed: () async {
-                  await FlutterIosAirplay.assets(
-                      assets: 'assets/americano.mp4');
-                },
-                child: const Text('Video assets'),
               ),
             ],
           ),

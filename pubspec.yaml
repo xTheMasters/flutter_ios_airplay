@@ -1,6 +1,6 @@
 name: flutter_ios_airplay
 description: A new Flutter plugin for iOS for get AirPlay on Flutter.
-version: 0.0.1
+version: 0.0.3
 homepage: https://themonstersapp.com/
 
 environment:
