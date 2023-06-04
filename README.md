@@ -1,15 +1,11 @@
-# flutter_ios_airplay
+## Usage
 
-A new Flutter plugin project.
+### Configuration
 
-## Getting Started
+#### Just add the `flutter pub add flutter_ios_airplay` to your project and done enjoy it.
 
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.dev/developing-packages/),
-a specialized package that includes platform-specific implementation code for
-Android and/or iOS.
+# Buy me a :coffee: !!
 
-For help getting started with Flutter development, view the
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+((More coffee == more code) == faster updates)
 
+[![Donate](https://themonstersapp.com/images/Donate-PayPal-green.svg)](https://paypal.me/jjsd)

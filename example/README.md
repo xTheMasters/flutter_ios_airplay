@@ -1,16 +1,11 @@
-# flutter_ios_airplay_example
+## Usage
 
-Demonstrates how to use the flutter_ios_airplay plugin.
+### Configuration
 
-## Getting Started
+#### Just add the `flutter pub add flutter_ios_airplay` to your project and done enjoy it.
 
-This project is a starting point for a Flutter application.
+# Buy me a :coffee: !!
 
-A few resources to get you started if this is your first Flutter project:
+((More coffee == more code) == faster updates)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+[![Donate](https://themonstersapp.com/images/Donate-PayPal-green.svg)](https://paypal.me/jjsd)
