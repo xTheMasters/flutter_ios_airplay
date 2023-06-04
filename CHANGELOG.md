@@ -1,3 +1,6 @@
+## 0.0.4
+
+* fix code issue when playing video.
 ## 0.0.3
 
 * fix code issue.

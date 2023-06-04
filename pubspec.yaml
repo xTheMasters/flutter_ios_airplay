@@ -1,7 +1,8 @@
 name: flutter_ios_airplay
-description: A new Flutter plugin for iOS for get AirPlay on Flutter.
-version: 0.0.3
+description: flutter ios airplay is a plugin to play video from a url and be able to use iOS Native AirPlay.
 homepage: https://themonstersapp.com/
+repository: https://github.com/xTheMasters/flutter_ios_airplay
+version: 0.0.4
 
 environment:
   sdk: '>=2.19.6 <3.0.0'
