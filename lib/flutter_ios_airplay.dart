@@ -1,16 +1,15 @@
-import 'dart:async';
-import 'package:flutter/services.dart';
+import 'flutter_ios_airplay_platform_interface.dart';
 
 class FlutterIosAirplay {
-  static const MethodChannel _channel = MethodChannel('flutter_ios_airplay');
+  static Future<String?> getPlatformVersion() {
+    return FlutterIosAirplayPlatform.instance.getPlatformVersion();
+  }
 
-  static Future<void> url({
-    required String url,
-  }) async {
-    Map<String, dynamic> args = {
-      'url': url,
-    };
+  static Future<void> url({required String url}) {
+    return FlutterIosAirplayPlatform.instance.playVideoFromUrl(url: url);
+  }
 
-    await _channel.invokeMethod('playVideoFromUrl', args);
+  static Future<void> assets({required String asset}) {
+    return FlutterIosAirplayPlatform.instance.playVideoFromAsset(asset: asset);
   }
 }

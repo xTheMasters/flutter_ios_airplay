@@ -4,52 +4,121 @@ import Flutter
 import UIKit
 
 public class FlutterIosAirplayPlugin: NSObject, FlutterPlugin {
+  private let registrar: FlutterPluginRegistrar
+
   public static func register(with registrar: FlutterPluginRegistrar) {
-    let channel = FlutterMethodChannel(name: "flutter_ios_airplay", binaryMessenger: registrar.messenger())
-    let instance = FlutterIosAirplayPlugin()
+    let channel = FlutterMethodChannel(
+        name: "flutter_ios_airplay",
+        binaryMessenger: registrar.messenger()
+    )
+    let instance = FlutterIosAirplayPlugin(registrar: registrar)
     registrar.addMethodCallDelegate(instance, channel: channel)
   }
 
+  init(registrar: FlutterPluginRegistrar) {
+    self.registrar = registrar
+    super.init()
+  }
+
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
-    if call.method == "playVideoFromUrl" {
+    switch call.method {
+
+    case "getPlatformVersion":
+      result(UIDevice.current.systemVersion)
+
+    // ------------------------------------------------------------
+    // PLAY VIDEO FROM URL
+    // ------------------------------------------------------------
+    case "playVideoFromUrl":
       guard let args = call.arguments as? [String: Any],
-            let url = args["url"] as? String
-      else {
-        result(FlutterError(code: "INVALID_ARGUMENTS", message: "Invalid arguments", details: nil))
+            let urlString = args["url"] as? String,
+            let videoURL = URL(string: urlString) else {
+
+        result(FlutterError(
+            code: "INVALID_ARGUMENTS",
+            message: "Invalid arguments",
+            details: nil
+        ))
         return
       }
 
-      // Reproduce el video desde la URL utilizando AVPlayerViewController
-      let player = AVPlayer(url: URL(string: url)!)
-      let playerViewController = AVPlayerViewController()
-      playerViewController.player = player
-      UIApplication.shared.keyWindow?.rootViewController?.present(playerViewController, animated: true) {
-        playerViewController.player?.play()
-        result(nil) // Éxito, no hay resultado adicional
-      }
-    } else if call.method == "playVideoFromAsset" {
+      playVideo(url: videoURL, result: result)
+
+    // ------------------------------------------------------------
+    // PLAY VIDEO FROM ASSET
+    // ------------------------------------------------------------
+    case "playVideoFromAsset":
       guard let args = call.arguments as? [String: Any],
-            let assets = args["assets"] as? String
-      else {
-        result(FlutterError(code: "INVALID_ARGUMENTS", message: "Invalid arguments", details: nil))
+            let assetPath = args["asset"] as? String else {
+
+        result(FlutterError(
+            code: "INVALID_ARGUMENTS",
+            message: "Missing or invalid 'asset' argument",
+            details: nil
+        ))
         return
       }
 
-      // Obtiene la URL del archivo en el asset
-      if let assetUrl = Bundle.main.url(forResource: assets, withExtension: nil) {
-        // Reproduce el video desde el asset utilizando AVPlayerViewController
-        let player = AVPlayer(url: assetUrl)
-        let playerViewController = AVPlayerViewController()
-        playerViewController.player = player
-        UIApplication.shared.keyWindow?.rootViewController?.present(playerViewController, animated: true) {
-          playerViewController.player?.play()
-          result(nil) // Éxito, no hay resultado adicional
-        }
-      } else {
-        result(FlutterError(code: "ASSET_NOT_FOUND", message: "Asset not found", details: nil))
+      let key = registrar.lookupKey(forAsset: assetPath)
+
+      guard let fullPath = Bundle.main.path(forResource: key, ofType: nil) else {
+        result(FlutterError(
+            code: "ASSET_NOT_FOUND",
+            message: "Asset not found",
+            details: assetPath
+        ))
+        return
       }
-    } else {
+
+      let url = URL(fileURLWithPath: fullPath)
+      playVideo(url: url, result: result)
+
+    default:
       result(FlutterMethodNotImplemented)
     }
+  }
+
+  // ------------------------------------------------------------
+  // Reusable player function
+  // ------------------------------------------------------------
+  private func playVideo(url: URL, result: @escaping FlutterResult) {
+    let player = AVPlayer(url: url)
+    player.isMuted = false
+    player.volume = 1.0
+
+    let playerVC = AVPlayerViewController()
+    playerVC.player = player
+    playerVC.allowsPictureInPicturePlayback = true
+
+    if #available(iOS 14.2, *) {
+      playerVC.canStartPictureInPictureAutomaticallyFromInline = true
+    }
+
+    DispatchQueue.main.async {
+      try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .moviePlayback, options: [.defaultToSpeaker])
+      try? AVAudioSession.sharedInstance().setActive(true)
+
+      let rootVC = UIApplication.shared.connectedScenes
+        .compactMap { $0 as? UIWindowScene }
+        .flatMap { $0.windows }
+        .first { $0.isKeyWindow }?.rootViewController
+
+      self.getTopViewController(from: rootVC)?.present(playerVC, animated: true) {
+        player.play()
+        result(nil)
+      }
+    }
+  }
+
+  // ------------------------------------------------------------
+  // Get current visible ViewController
+  // ------------------------------------------------------------
+  private func getTopViewController(from root: UIViewController?) -> UIViewController? {
+    guard let root = root else { return nil }
+    var top = root
+    while let presented = top.presentedViewController {
+      top = presented
+    }
+    return top
   }
 }

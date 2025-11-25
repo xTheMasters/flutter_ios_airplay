@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_ios_airplay/flutter_ios_airplay.dart';
 
 void main() {
@@ -14,6 +13,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  String? errorMessage;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -30,11 +30,38 @@ class _MyAppState extends State<MyApp> {
             children: [
               ElevatedButton(
                 onPressed: () async {
-                  await FlutterIosAirplay.url(
-                      url: 'https://themonstersapp.com/bunny.mp4');
+                  try {
+                    await FlutterIosAirplay.url(
+                      url: 'https://themonstersapp.com/bunny.mp4',
+                    );
+                    setState(() => errorMessage = null);
+                  } catch (e) {
+                    setState(() => errorMessage = e.toString());
+                  }
                 },
                 child: const Text('Video Url'),
               ),
+              const SizedBox(height: 12),
+              ElevatedButton(
+                onPressed: () async {
+                  try {
+                    await FlutterIosAirplay.assets(
+                      asset: 'assets/americano.mp4',
+                    );
+                    setState(() => errorMessage = null);
+                  } catch (e) {
+                    setState(() => errorMessage = e.toString());
+                  }
+                },
+                child: const Text('Video Asset'),
+              ),
+              const SizedBox(height: 12),
+              if (errorMessage != null)
+                Text(
+                  errorMessage!,
+                  style: const TextStyle(color: Colors.red),
+                  textAlign: TextAlign.center,
+                ),
             ],
           ),
         ),
