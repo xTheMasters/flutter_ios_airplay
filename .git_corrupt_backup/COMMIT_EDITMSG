@@ -1,0 +1,1 @@
+chore: migrate to Flutter 3.38/Dart 3.10; iOS plugin updates (UIScene, PiP, audio session, asset resolution); add static API helpers; update README with badges and features; bump version to 0.0.6 and add issue tracker; fix Xcode MARKETING_VERSION and build name/number in example; add error handling in example
