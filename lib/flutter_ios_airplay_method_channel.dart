@@ -11,7 +11,21 @@ class MethodChannelFlutterIosAirplay extends FlutterIosAirplayPlatform {
 
   @override
   Future<String?> getPlatformVersion() async {
-    final version = await methodChannel.invokeMethod<String>('getPlatformVersion');
+    final version = await methodChannel.invokeMethod<String>(
+      'getPlatformVersion',
+    );
     return version;
+  }
+
+  @override
+  Future<void> playVideoFromUrl({required String url}) async {
+    await methodChannel.invokeMethod<void>('playVideoFromUrl', {'url': url});
+  }
+
+  @override
+  Future<void> playVideoFromAsset({required String asset}) async {
+    await methodChannel.invokeMethod<void>('playVideoFromAsset', {
+      'asset': asset,
+    });
   }
 }
