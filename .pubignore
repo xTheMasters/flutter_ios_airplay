@@ -1,0 +1,5 @@
+example/flutter_ios_airplay_example.iml
+*.iml
+.DS_Store
+.idea/
+example/assets/americano.mp4
