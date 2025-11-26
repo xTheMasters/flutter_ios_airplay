@@ -44,11 +44,14 @@ import 'package:flutter_ios_airplay/flutter_ios_airplay.dart';
 await FlutterIosAirplay.url(url: 'https://example.com/video.mp4');
 
 // From asset (remember to declare it in your app's pubspec.yaml)
-await FlutterIosAirplay.assets(assets: 'assets/sample.mp4');
+await FlutterIosAirplay.assets(asset: 'assets/sample.mp4');
+
+```
 
 ### Notes
 
 - Methods throw `PlatformException` if input is invalid or playback fails.
+ 
 -
 ## Changelog
 
@@ -57,5 +60,9 @@ See `CHANGELOG.md` for release notes.
 ## Support
 
 If this plugin helps you, consider supporting the project:
+
+# Buy me a :coffee: !!
+
+((More coffee == more code) == faster updates)
 
 [![Donate](https://themonstersapp.com/images/Donate-PayPal-green.svg)](https://paypal.me/jjsd)
