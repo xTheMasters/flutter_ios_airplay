@@ -1,3 +1,7 @@
+## 0.0.8
+
+* Fix issue
+
 ## 0.0.7
 
 * Add Dart documentation for public API and enable `public_member_api_docs` lint
