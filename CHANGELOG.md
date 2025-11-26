@@ -1,3 +1,10 @@
+## 0.0.7
+
+* Add Dart documentation for public API and enable `public_member_api_docs` lint
+* Improve README with badges, Features section, and usage examples
+* Package hygiene: add `.pubignore` to exclude non-package files
+* Validate with `flutter analyze` (no issues)
+
 ## 0.0.6
 
 * Migrate to Flutter 3.38.x and Dart 3.10 SDK constraints
@@ -25,4 +32,3 @@
 ## 0.0.1
 
 * initial release.
-
