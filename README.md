@@ -52,7 +52,6 @@ await FlutterIosAirplay.assets(asset: 'assets/sample.mp4');
 
 - Methods throw `PlatformException` if input is invalid or playback fails.
  
--
 ## Changelog
 
 See `CHANGELOG.md` for release notes.
