@@ -13,6 +13,12 @@
 - UIScene lifecycle compatibility (modern iOS apps)
 - Simple static API: `FlutterIosAirplay.url(...)` and `FlutterIosAirplay.assets(...)`
 
+## API
+
+- `FlutterIosAirplay.getPlatformVersion()` returns the native platform version.
+- `FlutterIosAirplay.url({required String url})` plays a video from a URL.
+- `FlutterIosAirplay.assets({required String assets})` plays a bundled asset video.
+
 ## Usage
 
 ### Installation
@@ -39,8 +45,11 @@ await FlutterIosAirplay.url(url: 'https://example.com/video.mp4');
 
 // From asset (remember to declare it in your app's pubspec.yaml)
 await FlutterIosAirplay.assets(assets: 'assets/sample.mp4');
-```
 
+### Notes
+
+- Methods throw `PlatformException` if input is invalid or playback fails.
+-
 ## Changelog
 
 See `CHANGELOG.md` for release notes.
