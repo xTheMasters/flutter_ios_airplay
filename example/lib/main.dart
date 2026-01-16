@@ -46,7 +46,7 @@ class _MyAppState extends State<MyApp> {
                 onPressed: () async {
                   try {
                     await FlutterIosAirplay.assets(
-                      asset: 'assets/americano.mp4',
+                      asset: 'assets/bunny.mp4',
                     );
                     setState(() => errorMessage = null);
                   } catch (e) {
