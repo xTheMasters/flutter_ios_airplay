@@ -17,7 +17,7 @@
 
 - `FlutterIosAirplay.getPlatformVersion()` returns the native platform version.
 - `FlutterIosAirplay.url({required String url})` plays a video from a URL.
-- `FlutterIosAirplay.assets({required String assets})` plays a bundled asset video.
+- `FlutterIosAirplay.assets({required String asset})` plays a bundled asset video.
 
 ## Usage
 
